@@ -1,0 +1,86 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Sample Form</h2>
+                    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group my-2">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" formControlName="name">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="uniqueSchlId">Unique School ID</label>
+                            <input type="text" class="form-control" id="uniqueSchlId" placeholder="Enter your unique school ID"
+                                formControlName="uniqueSchId">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                                formControlName="password">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="role">Role</label>
+                            <input type="text" class="form-control" id="role" placeholder="Enter your role" formControlName="role">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="state">State</label>
+                            <select class="form-control" id="state" formControlName="state" (change)="selectCity($event)">
+                                <option value="">Select your state</option>
+                                <option>Gujarat</option>
+                                <option>Maharastra</option>
+                                <option>Punjab</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="city">City</label>
+                            <select class="form-control" id="city" formControlName="city">
+                                <option value="" selected disabled>Select your city</option>
+                                <option>Ahmedabad</option>
+                                <option>Surat</option>
+                                <option>Vadodara</option>
+                            </select>
+                        </div> 
+                        <div class="row my-2">
+                            <div class="col-lg-6">
+                                <label for="address">Address</label>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button type="button" class="btn btn-primary mb-2" (click)="addAddress()">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group my-2" formArrayName="address">
+                            <div *ngFor="let address of addressList.controls; let i=index" [formGroupName]="i" class="row">
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <label for="street">Street</label>
+                                        <input type="text" class="form-control" id="street" placeholder="Enter your street" formControlName="street">
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <label for="zipcode">Zipcode</label>
+                                        <input type="text" class="form-control" id="zipcode" placeholder="Enter your zipcode" formControlName="zipcode">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button type="button" class="btn btn-danger mb-2" (click)="removeAddress(i)" *ngIf="i > 0">
+                                        -
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                            <input type="file" class="form-control" id="inputGroupFile01" formControlName="filePath" (change)="onSelectedFile($event)">
+                          </div>
+                        <button type="submit" class="btn btn-primary my-2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
